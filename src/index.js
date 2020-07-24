@@ -5,9 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const toyFormContainer = document.querySelector(".container");
   addBtn.addEventListener("click", () => {
     // hide & seek with the form
-
-    
-
     addToy = !addToy;
     if (addToy) {
       toyFormContainer.style.display = "block"
@@ -17,10 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       toyFormContainer.style.display = "none";
     }
   });
-
   // const toyForm = document.querySelector('#add-toy-form')
-  
-
   loadToys();
 });
 
@@ -51,8 +45,9 @@ function renderToys (json) {
     
     let btn = document.createElement("button")
     btn.className = "like-btn"
+    btn.innerText = "LIKE ME"
     btn.addEventListener("click", (e) => {
-      event.preventDefault()
+      e.preventDefault()
       incrementLikes(e, toy)
     })
 
@@ -68,7 +63,7 @@ function renderToys (json) {
 function incrementLikes(e, toy) {
 
   toy.likes ++
-  console.log(toy.likes)
+  // console.log(toy.likes)
     
   fetch(`http://localhost:3000/toys/${toy.id}`, {
     method:'PATCH',
@@ -83,8 +78,8 @@ function incrementLikes(e, toy) {
 function postNewToy(e) {
   e.preventDefault()
 
-  console.log(e.target.name.value)
-  console.log(e.target.image.value)
+  // console.log(e.target.name.value)
+  // console.log(e.target.image.value)
 
   fetch(`http://localhost:3000/toys`, {
     method: 'POST',
